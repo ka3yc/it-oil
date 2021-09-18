@@ -1,0 +1,58 @@
+{
+	"IsSuccess": "true",
+	"Message": "",
+	"Metrics": [
+		{
+			"Id": "1",
+			"Name": "Состояние ИБП",
+			"Min": "0",
+			"Max": "100",
+			"Value": "87",
+			"Type": "gauge"
+		},
+		{
+			"Id": "2",
+			"Name": "Локальная сеть (Гбит/с)",
+			"Min": "0",
+			"Max": "10",
+			"Value": "4",
+			"Type": "gauge"
+		},
+		{
+			"Id": "4",
+			"Name": "Скорость интернет (Мбит/с)",
+			"Min": "0",
+			"Max": "100",
+			"Value": "40",
+			"Type": "gauge"
+		},
+		{
+			"Id": "5",
+			"Name": "Почтовый сервер",
+			"LastPoll": "3 минуты назад",
+			"Period": "5 минут",
+			"Type": "text"
+		},
+		{
+			"Id": "7",
+			"Name": "Web сервер",
+			"LastPoll": "5 минут назад",
+			"Period": "1 минута",
+			"Type": "text"
+		},
+		{
+			"Id": "6",
+			"Name": "Лицензия Petrel",
+			"Max": "720",
+			"Value": "25",
+			"Type": "license"
+		},
+		{
+			"Id": "8",
+			"Name": "Лицензия Геонафт",
+			"Max": "720",
+			"Value": "680",
+			"Type": "license"
+		}
+	]
+}

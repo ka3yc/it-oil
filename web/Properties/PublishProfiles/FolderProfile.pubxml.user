@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Work\Itoil\bin\app.publish\</_PublishTargetUrl>
+    <History>True|2021-09-18T11:51:59.4097981Z;True|2021-09-18T15:20:10.7475198+04:00;True|2021-09-18T15:19:33.0152431+04:00;True|2021-09-18T14:49:14.6649734+04:00;True|2021-09-18T14:39:46.0994302+04:00;True|2021-09-17T14:28:36.9425413+04:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplicationInsights.config">
+      <publishTime>09/18/2021 15:24:57</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>09/18/2021 15:24:57</publishTime>
+    </File>
+    <File Include="bin/Itoil.dll">
+      <publishTime>09/18/2021 15:51:58</publishTime>
+    </File>
+    <File Include="bin/Itoil.pdb">
+      <publishTime>09/18/2021 15:51:58</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>07/12/2015 19:04:38</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>10/03/2016 14:26:18</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>10/03/2016 14:26:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>09/03/2016 12:00:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>10/03/2016 14:26:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>10/03/2016 14:26:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>09/03/2016 11:57:34</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>03/17/2021 20:03:36</publishTime>
+    </File>
+    <File Include="bin/NLog.config">
+      <publishTime>09/18/2021 15:25:30</publishTime>
+    </File>
+    <File Include="bin/NLog.dll">
+      <publishTime>05/14/2021 12:27:38</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>11/28/2018 13:00:36</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>10/19/2020 18:46:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Cors.dll">
+      <publishTime>11/28/2018 12:58:44</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.Cors.dll">
+      <publishTime>11/28/2018 13:01:26</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>01/28/2015 04:03:46</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>09/17/2021 13:09:41</publishTime>
+    </File>
+    <File Include="NLog.config">
+      <publishTime>09/18/2021 15:25:30</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>09/18/2021 15:25:46</publishTime>
+    </File>
+    <File Include="scripts/ai.0.22.9-build00167.js">
+      <publishTime>09/18/2021 15:27:01</publishTime>
+    </File>
+    <File Include="scripts/ai.0.22.9-build00167.min.js">
+      <publishTime>09/18/2021 15:26:58</publishTime>
+    </File>
+    <File Include="view/css/default.css">
+      <publishTime>09/18/2021 15:50:34</publishTime>
+    </File>
+    <File Include="view/data/data.json">
+      <publishTime>08/09/2021 00:09:03</publishTime>
+    </File>
+    <File Include="view/data/map.json">
+      <publishTime>09/17/2021 12:26:46</publishTime>
+    </File>
+    <File Include="view/data/metric-history.json">
+      <publishTime>09/17/2021 15:15:52</publishTime>
+    </File>
+    <File Include="view/data/metrics.json">
+      <publishTime>09/09/2021 11:08:22</publishTime>
+    </File>
+    <File Include="view/data/stages.json">
+      <publishTime>08/09/2021 00:09:03</publishTime>
+    </File>
+    <File Include="view/index.html">
+      <publishTime>09/18/2021 15:51:23</publishTime>
+    </File>
+    <File Include="view/js/chart-map.js">
+      <publishTime>09/18/2021 09:13:41</publishTime>
+    </File>
+    <File Include="view/js/data-service.js">
+      <publishTime>09/18/2021 15:18:02</publishTime>
+    </File>
+    <File Include="view/js/main-controller.js">
+      <publishTime>09/18/2021 15:18:46</publishTime>
+    </File>
+    <File Include="view/js/metric-chart-template.js">
+      <publishTime>08/09/2021 16:37:37</publishTime>
+    </File>
+    <File Include="view/js/metric-gauge.js">
+      <publishTime>09/09/2021 13:58:33</publishTime>
+    </File>
+    <File Include="view/js/metric-license.js">
+      <publishTime>09/09/2021 11:35:25</publishTime>
+    </File>
+    <File Include="view/js/metric-poll.js">
+      <publishTime>09/18/2021 13:25:03</publishTime>
+    </File>
+    <File Include="view/js/webapi-helper.js">
+      <publishTime>09/17/2021 15:54:04</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>09/18/2021 15:51:59</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

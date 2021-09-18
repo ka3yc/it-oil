@@ -1,0 +1,38 @@
+{
+	"IsSuccess": "true",
+	"Message": "",
+	"Result":[
+			{
+				"id": 1,
+			    "title": "Moscow",
+			    "latitude": 55.7558,
+			    "longitude": 37.6176,
+					"color": "#f44336"
+			}, {
+				"id": 2,
+			    "title": "Жалым",
+			    "latitude": 65.9056,
+			    "longitude": 64.3958
+			},
+			{
+				"id": 3,
+			    "title": "Северо-хоседаюское, КП 1, Скв 23",
+			    "latitude": 66.9056,
+			    "longitude": 65.3958,
+					"color": "#f44336"
+			},
+			{
+				"id": 4,
+			    "title": "Жалым-39, КП 202, Скв 3",
+			    "latitude": 67.9056,
+			    "longitude": 63.3958,
+					"color": "#ff9800"
+			},
+			{
+				"id": 5,
+			    "title": "Им. Сливки, КП 1, Скв 0",
+			    "latitude": 65.8056,
+			    "longitude": 64.6958,
+					"color": "#4caf50"
+			}]
+}

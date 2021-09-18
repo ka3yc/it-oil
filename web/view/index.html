@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/maps.js"></script>
+    <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/themes/kelly.js"></script>
+    <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>
+    <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js" integrity="sha512-Lrd4lY1eAdzAhDC85I72/+oDee8Zut38nRh9fKQsssTHhm91CRwwOAwjPB0M7UtSlWryD1dHVTBbyLadXwUJDA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/default.css?v2" />
+
+    <script type="text/javascript" src="js/webapi-helper.js?v1"></script>
+    <script type="text/javascript" src="js/data-service.js?v2"></script>
+    <script type="text/javascript" src="js/chart-map.js?v1"></script>
+    <script type="text/javascript" src="js/metric-chart-template.js"></script>
+    <script type="text/javascript" src="js/metric-gauge.js?v1"></script>
+    <script type="text/javascript" src="js/metric-license.js?v1"></script>
+    <script type="text/javascript" src="js/metric-poll.js?v1"></script>
+    <script type='text/javascript' src='js/main-controller.js?v1'></script>
+
+</head>
+<body ng-app='app' ng-controller='MainController as ctrl'>
+    <header>
+        Система мониторинга ЦУСС
+    </header>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ЦУСС</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Главная</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Выпадающее меню
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Сюда</a></li>
+                            <li><a class="dropdown-item" href="#">Можно</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Что-то добавить</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="d-flex">                    
+                    {{ctrl.Data.UserName}}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class='alert alert-danger' ng-repeat="error in ctrl.Errors">        
+        <i class="fas fa-times error-close-btn" ng-click="ctrl.RemoveError(error)"></i>Ошибка: {{error}} 
+    </div>
+
+    <hr />
+
+    <div class="metric-histories">
+        <div class="metric-history" ng-repeat="hist in ctrl.MetricHistories">
+            <div class="metric-history-head">
+                <b>{{hist.Name}}</b>
+                <p>Сбоев за период: {{hist.FaultCount}}</p>
+                <a href="#" ng-click="ctrl.RemoveHistory(hist)">Закрыть</a>
+            </div>
+            <div class="metric-history-data">
+                <span ng-repeat="item in hist.History">{{item.Label}}, {{item.Value}} |</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="wells">
+        <h3>Ситуация по скважинам</h3>
+        <div class="well-tree-item" ng-repeat="cust in ctrl.WellData">
+            <div ng-click="cust.expanded = !cust.expanded" class="well-tree-item-content">
+                <i class="fas fa-plus" ng-if="!cust.expanded"></i>
+                <i class="fas fa-minus" ng-if="cust.expanded"></i>
+                {{cust.Name}}
+                <i class="fas fa-plug well-noinet" ng-if="cust.HasFails" title="Отсутствует связь"></i>
+                <i class="fas fa-wifi well-badsignal" ng-if="cust.HasWarnings" title="Слабый уровень сигнала"></i>
+            </div>
+            
+            <div class="well-tree-item" ng-repeat="field in cust.Children" ng-if="cust.expanded">
+                <div ng-click="field.expanded = !field.expanded" class="well-tree-item-content">
+                    <i class="fas fa-plus" ng-if="!field.expanded"></i>
+                    <i class="fas fa-minus" ng-if="field.expanded"></i>
+                    {{field.Name}}
+                    <i class="fas fa-plug well-noinet" ng-if="field.HasFails" title="Отсутствует связь"></i>
+                    <i class="fas fa-wifi well-badsignal" ng-if="field.HasWarnings" title="Слабый уровень сигнала"></i>
+                </div>
+                
+                <div class="well-tree-item" ng-repeat="corr in field.Children" ng-if="field.expanded">
+                    <div ng-click="corr.expanded = !corr.expanded" class="well-tree-item-content">
+                        <i class="fas fa-plus" ng-if="!corr.expanded"></i>
+                        <i class="fas fa-minus" ng-if="corr.expanded"></i>
+                        {{corr.Name}}
+                        <i class="fas fa-plug well-noinet" ng-if="corr.HasFails" title="Отсутствует связь"></i>
+                        <i class="fas fa-wifi well-badsignal" ng-if="corr.HasWarnings" title="Слабый уровень сигнала"></i>
+                    </div>
+                    <div class="well-tree-item" ng-repeat="pad in corr.Children" ng-if="corr.expanded">
+                        <div ng-click="pad.expanded = !pad.expanded" class="well-tree-item-content">
+                            <i class="fas fa-plus" ng-if="!pad.expanded"></i>
+                            <i class="fas fa-minus" ng-if="pad.expanded"></i>
+                            {{pad.Name}}
+                            <i class="fas fa-plug well-noinet" ng-if="pad.HasFails" title="Отсутствует связь"></i>
+                            <i class="fas fa-wifi well-badsignal" ng-if="pad.HasWarnings" title="Слабый уровень сигнала"></i>
+                        </div>
+                        <div class="well-tree-item well-tree-item-content" ng-repeat="well in pad.Wells" ng-if="pad.expanded">
+                            {{well.Name}}
+                            <i class="fas fa-plug well-noinet" ng-if="!well.IsInternetOk"></i>
+                            <i class="fas fa-wifi" ng-class="ctrl.GetWellSignalCss(well)" ng-if="well.IsInternetOk" title="Уровень сигнала: {{well.SignalLevel}}"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-column clearfix">
+        <h3 ng-click="ctrl.RefreshData()">Мониторинг общих ИТ-ресурсов</h3>
+
+        <div class="summary">
+            <div class="summary-row">
+                <div class="summary-cell">
+                    Общие ресурсы:
+                    <span class="summary-well-failed" title="Кол-во ресурсов с проблемами">{{ctrl.Status.Basic.Failed}}</span> /
+                    <span class="summary-well-good" title="Кол-во ресурсов без проблем">{{ctrl.Status.Basic.Good}}</span>
+                </div>
+                <div class="summary-cell">
+                    По скважинам:
+                    <span class="summary-well-failed" title="Кол-во скважин с отсутствием связи">{{ctrl.Status.Wells.Failed}}</span> /
+                    <span class="summary-well-warn" title="Кол-во скважин с плохой связью">{{ctrl.Status.Wells.Warn}}</span> /
+                    <span class="summary-well-good" title="Кол-во скважин без проблем">{{ctrl.Status.Wells.Good}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class='container'>
+            <div ng-class='ctrl.getMetricBoxCss(metric)' ng-repeat="metric in ctrl.Metrics" ng-click="ctrl.GetMetricHistory(metric)">
+                <div class='title'>{{metric.Data.Name}}</div>
+                <metric-gauge ng-if='metric.Data.Type == "Gauge"' class='chart-gauge' number='metric.Data.Id' chart='metric.Chart'></metric-gauge>
+                <metric-license ng-if='metric.Data.Type == "License"' class='chart-license' number='metric.Data.Id' chart='metric.Chart'></metric-license>
+                <metric-poll ng-if='metric.Data.Type == "Poll"' last-poll='metric.Data.LastPoll' period='metric.Data.PollPeriod' is-ok="metric.Data.IsOk"></metric-poll>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both;"></div>
+    <div class="map-container">
+        <h3>Карта сбоев</h3>
+        <chart-map chart='ctrl.ChartMap'></chart-map>
+
+        <div class='map'>
+            <div id="chartmap"></div>
+        </div>
+    </div>
+    
+</body>
+</html>

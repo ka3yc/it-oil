@@ -1,0 +1,78 @@
+{
+	"IsSuccess": "true",
+	"Message": "",
+	"Result": {
+		"Name": "Локальная сеть (Гбит/с)",
+		"FaultCount": 3,
+		"History": [
+			{
+				"Label": "11:00",
+				"Value": "87"
+			},
+			{
+				"Label": "11:05",
+				"Value": "84"
+			},
+			{
+				"Label": "11:10",
+				"Value": "80"
+			},
+			{
+				"Label": "11:15",
+				"Value": "91"
+			},
+			{
+				"Label": "11:20",
+				"Value": "89"
+			},
+			{
+				"Label": "11:25",
+				"Value": "75"
+			},
+			{
+				"Label": "11:30",
+				"Value": "55"
+			},
+			{
+				"Label": "11:35",
+				"Value": "58"
+			},
+			{
+				"Label": "11:40",
+				"Value": "45"
+			},
+			{
+				"Label": "11:45",
+				"Value": "44"
+			},
+			{
+				"Label": "11:50",
+				"Value": "20"
+			},
+			{
+				"Label": "11:55",
+				"Value": "0"
+			},
+			{
+				"Label": "11:55",
+				"Value": "1"
+			},
+			{
+				"Label": "11:55",
+				"Value": "2"
+			},
+			{
+				"Label": "11:55",
+				"Value": "1"
+			},
+			{
+				"Label": "11:55",
+				"Value": "40"
+			},
+			{
+				"Label": "11:55",
+				"Value": "80"
+			}
+		]
+	}
+}
