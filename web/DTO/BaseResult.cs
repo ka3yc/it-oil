@@ -5,17 +5,40 @@ using System.Web;
 
 namespace Itoil.DTO
 {
-    public class BaseResult<TResult>
+    /// <summary>
+    /// Класс с данными о результате операции
+    /// </summary>
+    public class BaseResult
     {
-        public TResult Result { get; set; }
-
         public bool IsSuccess { get; set; }
 
         public String Message { get; set; }
 
+        public static BaseResult Error(String message)
+        {
+            return new BaseResult { Message = message };
+        }
+
+        public static BaseResult Success()
+        {
+            return new BaseResult
+            {
+                IsSuccess = true
+            };
+        }
+    }
+
+    /// <summary>
+    /// Класс с данными о результате операции
+    /// <typeparamref name="TResult">Тип результата, который возвращает операция</typeparamref>
+    /// </summary>
+    public class BaseResult<TResult> : BaseResult
+    {
+        public TResult Result { get; set; }
+
         public BaseResult() { }
 
-        public static BaseResult<TResult> Error(String message)
+        public static new BaseResult<TResult> Error(String message)
         {
             return new BaseResult<TResult> { Message = message };
         }

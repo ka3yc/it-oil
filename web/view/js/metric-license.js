@@ -1,3 +1,6 @@
+/*
+ * Компонент для отрисовки "лицензий". Используется библиотека amcharts
+ * */
 angular.module("metric-license", ["ui/chartTemplate.html"])
   .directive("metricLicense", function () {
     return {

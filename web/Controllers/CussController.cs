@@ -24,9 +24,6 @@ namespace Itoil.Controllers
         [Route("metric")]
         public BaseResult<List<DTO.Metric>> GetMetrics()
         {
-            //if (DateTime.Now.Second % 2 == 0)
-            //    throw new Exception("Какая-то ошибка");
-
             using (var svc = new MetricService())
                 return svc.GetMetrics();
         }
@@ -72,12 +69,13 @@ namespace Itoil.Controllers
             });
         }
 
-        //[Route("metric/{id}/{value}")]
-        //[HttpPost]
-        //public BaseResult ReportMetricValue(int metricId, string value)
-        //{
-
-        //}
+        [Route("metric/{id}/{value}")]
+        [HttpPost]
+        public BaseResult ReportMetricValue(int metricId, string value)
+        {
+            using (var svc = new MetricService())
+                return svc.ReportMetricValue(metricId, value);
+        }
 
     }
 }

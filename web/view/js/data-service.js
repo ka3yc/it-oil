@@ -1,4 +1,8 @@
-﻿angular.module('appDataModule', ['webapiHelperModule'])
+﻿/*
+ * Сервис для вызова методов web api
+ */
+
+angular.module('appDataModule', ['webapiHelperModule'])
         .config(['$httpProvider', function ($httpProvider) {
             //$httpProvider.defaults.withCredentials = true;
         }])

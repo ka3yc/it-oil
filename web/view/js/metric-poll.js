@@ -1,3 +1,6 @@
+/*
+ * Компонент для отрисовки метрики вида "опрос". Используется библиотека amcharts
+ * */
 angular.module("metric-poll", [])
   .directive("metricPoll", function () {
     return {

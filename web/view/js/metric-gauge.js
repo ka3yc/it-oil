@@ -1,3 +1,6 @@
+/*
+ * Компонент для отрисовки "спидометра". Используется библиотека amcharts
+ * */
 angular.module("metric-gauge", ["ui/chartTemplate.html"])
   .directive("metricGauge", function () {
     return {

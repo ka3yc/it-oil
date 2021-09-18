@@ -10,6 +10,8 @@ namespace Itoil.BL
     public class MetricService : IDisposable
     {
         const string ErrorGetData = "Ошибка получения данных";
+        const string ErrorReportingValue = "Ошибка сохранения значения метрики";
+
         NLog.Logger Logger;
         MetricRepository Repository;
 
@@ -20,7 +22,11 @@ namespace Itoil.BL
             Repository = new MetricRepository();
         }
 
-        public BaseResult<List<DTO.Metric>> GetMetrics()
+        /// <summary>
+        /// Получить список метрик с текущими значениями
+        /// </summary>
+        /// <returns></returns>
+        internal BaseResult<List<DTO.Metric>> GetMetrics()
         {
             try
             {
@@ -38,7 +44,11 @@ namespace Itoil.BL
             }
         }
 
-        public BaseResult<List<WellGroup>> GetWellData()
+        /// <summary>
+        /// Получить список сгруппированных скважин, со статусами по каждой
+        /// </summary>
+        /// <returns></returns>
+        internal BaseResult<List<WellGroup>> GetWellData()
         {
             var rnd = new Random();
 
@@ -81,6 +91,29 @@ namespace Itoil.BL
             {
                 Logger.Error(ex);
                 return BaseResult<List<DTO.WellGroup>>.Error(ErrorGetData);
+            }
+        }
+
+        /// <summary>
+        /// Обновить значение метрики (не реализовано)
+        /// </summary>
+        /// <param name="metricId">Ид метрики</param>
+        /// <param name="value">новое значение</param>
+        /// <returns></returns>
+        internal BaseResult ReportMetricValue(int metricId, string value)
+        {
+            try
+            {
+                //var metric = Repository.GetMetric(metricId);
+                //metric.SetValue(value);
+                //Repository.SaveMetric(metric);
+
+                return BaseResult.Success();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return BaseResult.Error(ErrorReportingValue);
             }
         }
 

@@ -1,3 +1,6 @@
+/*
+ * Компонент для отрисовки карты. Используется библиотека amcharts
+ * */
 angular.module("chart-map", [])
   .directive("chartMap", function () {
     return {
