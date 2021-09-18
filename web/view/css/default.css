@@ -30,19 +30,21 @@ header {
 	background-color: #3475c0;
 }
 
-	footer {
-		margin-top: 50px;
-		padding: 20px 0px;
-		border-top: solid 1px #333333;
-		background-color: #666;
-		color: #0f0;
-		font-family: 'Consolas', 'Verdana'
-	}
-
-.right-column{
-	float:left;
-	text-align: center;
+footer {
+	margin-top: 50px;
+	padding: 20px 0px;
+	border-top: solid 1px #333333;
+	background-color: #666;
+	color: #0f0;
+	font-family: 'Consolas', 'Verdana'
 }
+
+.right-column {
+	float: left;
+	text-align: center;
+	padding-left: 40px;
+}
+
 .container {
 	display: flex;            
 	flex-wrap: wrap;
@@ -166,6 +168,45 @@ header {
 }
 .well-goodsignal {
 	color: green;
+}
+
+.well-info-tab1-buttons {
+	
+	margin: 20px 0px;
+}
+.well-info-left{
+	float: left;
+	text-align: left;
+}
+.well-info-right {
+	padding-left: 530px;
+}
+.well-info-project {
+	width: 250px;
+	float: left;
+}
+.well-info-wells {
+	text-align: center;
+}
+.well-chat {
+	width: 400px;
+	text-align: right;
+	border: solid 2px #dadada;
+	border-radius: 2px;
+	margin: 20px;
+	position: absolute;
+	right: 10px;
+}
+.well-chat-container {
+	height: 400px;
+	overflow-y: auto;
+}
+.well-chat-message {
+	text-align: left;
+	border-radius: 10px;
+	margin: 5px 10px;
+	padding: 3px;
+	background-color: #DCF8C6;
 }
 
 .error-close-btn {

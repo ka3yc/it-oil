@@ -1,9 +1,10 @@
 var app = angular.module('app', ["appDataModule", "metric-gauge", "metric-license", "metric-poll", "chart-map"])
 
-app.controller('MainController', ['$http', '$interval', '$location', '$timeout', 'appDataService', function ($http, $interval, $location, $timeout, dataSvc) {
+app.controller('MainController', ['$http', '$interval', '$location', '$timeout', '$scope', 'appDataService', function ($http, $interval, $location, $timeout, $scope, dataSvc) {
     var ctrl = this;
     ctrl.IsLoading = true;
-    ctrl.View = "default";
+    //Если не задано - показываем общую информацию, если указана скважина - то показываем инфу по ней
+    ctrl.ViewWell = null;
 
     ctrl.Status = {
         Basic: {
@@ -22,18 +23,26 @@ app.controller('MainController', ['$http', '$interval', '$location', '$timeout',
     ctrl.Errors = [];
 
     ctrl.Initialize = function () {
+
         moment.locale('ru-Ru');
 
-        var url = $location.$$url;
-        if (url == '/fails')
-            ctrl.View = 'fails';
+        $scope.$watch('ctrl.ViewWell', function (newVal, oldVal) {
+            if (oldVal != newVal && newVal && newVal.Id)
+                ctrl.GetWellDetails(newVal.Id)
+        });
+
+        var search = $location.search();
+        if (search.wellId)
+            ctrl.ViewWell = parseInt(search.wellId, 10);
 
         ctrl.GetCommonData();
         ctrl.RefreshData();
 
         $interval(function () {
             ctrl.RefreshData();
-        }, 2000);
+        }, 5000);
+
+        
     }
 
     ctrl.RefreshData = function () {
@@ -102,6 +111,10 @@ app.controller('MainController', ['$http', '$interval', '$location', '$timeout',
         dataSvc.getWellData()
             .then(function (result) {
                 var wells = getWells(result);
+
+                //Для отладки
+                //if(!ctrl.ViewWell)
+                //    ctrl.ViewWell = wells[0];
 
                 if (!ctrl.WellData || !ctrl.WellData.length)
                     ctrl.WellData = result;
@@ -172,6 +185,15 @@ app.controller('MainController', ['$http', '$interval', '$location', '$timeout',
             }
         });
 
+    }
+
+    ctrl.GetWellDetails = function (wellId) {
+        //Тут должен быть запрос к серверу
+        $timeout(function () {
+            ctrl.ViewWell.Details = {
+                Wells: [{ Name: "101" }, { Name: "102" }, { Name: "103" }, { Name: "104" }, { Name: "105" }, { Name: "106" }, { Name: "107" }]
+            };
+        }, 10);
     }
 
     ctrl.GetMetricHistory = function (metric) {

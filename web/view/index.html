@@ -4,6 +4,11 @@
     <title></title>
     <meta charset="utf-8" />
 
+    <link type="image/x-icon" rel="shortcut icon" href="images/favicon.ico">
+    <link type="image/png" sizes="16x16" rel="icon" href="images/favicon-16.png">
+    <link type="image/png" sizes="32x32" rel="icon" href="images/favicon-32.png">
+    <link type="image/png" sizes="64x64" rel="icon" href="images/favicon-64.png">
+
     <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/core.js"></script>
     <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/maps.js"></script>
     <script type="text/javascript" src="https://cdn.amcharts.com/lib/4/charts.js"></script>
@@ -13,14 +18,14 @@
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js" integrity="sha512-Lrd4lY1eAdzAhDC85I72/+oDee8Zut38nRh9fKQsssTHhm91CRwwOAwjPB0M7UtSlWryD1dHVTBbyLadXwUJDA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-    
+
     <script type="text/javascript" src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
-    
+
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" />
 
-    <link rel="stylesheet" type="text/css" href="css/default.css?v2" />
+    <link rel="stylesheet" type="text/css" href="css/default.css?v5" />
 
     <script type="text/javascript" src="js/webapi-helper.js?v1"></script>
     <script type="text/javascript" src="js/data-service.js?v2"></script>
@@ -29,8 +34,11 @@
     <script type="text/javascript" src="js/metric-gauge.js?v1"></script>
     <script type="text/javascript" src="js/metric-license.js?v1"></script>
     <script type="text/javascript" src="js/metric-poll.js?v1"></script>
-    <script type='text/javascript' src='js/main-controller.js?v1'></script>
+    <script type='text/javascript' src='js/main-controller.js?v2'></script>
 
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png" />
+    <link rel="shortcut icon" href="/images/favicon.ico" />
 </head>
 <body ng-app='app' ng-controller='MainController as ctrl'>
     <header>
@@ -60,15 +68,15 @@
                         </ul>
                     </li>
                 </ul>
-                <div class="d-flex">                    
+                <div class="d-flex">
                     {{ctrl.Data.UserName}}
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class='alert alert-danger' ng-repeat="error in ctrl.Errors">        
-        <i class="fas fa-times error-close-btn" ng-click="ctrl.RemoveError(error)"></i>Ошибка: {{error}} 
+    <div class='alert alert-danger' ng-repeat="error in ctrl.Errors">
+        <i class="fas fa-times error-close-btn" ng-click="ctrl.RemoveError(error)"></i>Ошибка: {{error}}
     </div>
 
     <hr />
@@ -93,24 +101,27 @@
                 <i class="fas fa-plus" ng-if="!cust.expanded"></i>
                 <i class="fas fa-minus" ng-if="cust.expanded"></i>
                 {{cust.Name}}
+                <i class="far fa-envelope"></i>
                 <i class="fas fa-plug well-noinet" ng-if="cust.HasFails" title="Отсутствует связь"></i>
                 <i class="fas fa-wifi well-badsignal" ng-if="cust.HasWarnings" title="Слабый уровень сигнала"></i>
             </div>
-            
+
             <div class="well-tree-item" ng-repeat="field in cust.Children" ng-if="cust.expanded">
                 <div ng-click="field.expanded = !field.expanded" class="well-tree-item-content">
                     <i class="fas fa-plus" ng-if="!field.expanded"></i>
                     <i class="fas fa-minus" ng-if="field.expanded"></i>
                     {{field.Name}}
+                    <i class="far fa-envelope" ng-if="$first"></i>
                     <i class="fas fa-plug well-noinet" ng-if="field.HasFails" title="Отсутствует связь"></i>
                     <i class="fas fa-wifi well-badsignal" ng-if="field.HasWarnings" title="Слабый уровень сигнала"></i>
                 </div>
-                
+
                 <div class="well-tree-item" ng-repeat="corr in field.Children" ng-if="field.expanded">
                     <div ng-click="corr.expanded = !corr.expanded" class="well-tree-item-content">
                         <i class="fas fa-plus" ng-if="!corr.expanded"></i>
                         <i class="fas fa-minus" ng-if="corr.expanded"></i>
                         {{corr.Name}}
+                        <i class="far fa-envelope" ng-if="$first"></i>
                         <i class="fas fa-plug well-noinet" ng-if="corr.HasFails" title="Отсутствует связь"></i>
                         <i class="fas fa-wifi well-badsignal" ng-if="corr.HasWarnings" title="Слабый уровень сигнала"></i>
                     </div>
@@ -119,12 +130,14 @@
                             <i class="fas fa-plus" ng-if="!pad.expanded"></i>
                             <i class="fas fa-minus" ng-if="pad.expanded"></i>
                             {{pad.Name}}
+                            <i class="far fa-envelope" ng-if="!$first"></i>
                             <i class="fas fa-plug well-noinet" ng-if="pad.HasFails" title="Отсутствует связь"></i>
                             <i class="fas fa-wifi well-badsignal" ng-if="pad.HasWarnings" title="Слабый уровень сигнала"></i>
                         </div>
                         <div class="well-tree-item well-tree-item-content" ng-repeat="well in pad.Wells" ng-if="pad.expanded">
-                            {{well.Name}}
-                            <i class="fas fa-plug well-noinet" ng-if="!well.IsInternetOk"></i>
+                            <a href="#" ng-click="ctrl.ViewWell = well">{{well.Name}}</a>
+                            <i class="far fa-envelope" ng-if="!$first"></i>
+                            <i class="fas fa-plug well-noinet" ng-if="!well.IsInternetOk" title="Отсутствует связь!"></i>
                             <i class="fas fa-wifi" ng-class="ctrl.GetWellSignalCss(well)" ng-if="well.IsInternetOk" title="Уровень сигнала: {{well.SignalLevel}}"></i>
                         </div>
                     </div>
@@ -133,7 +146,7 @@
         </div>
     </div>
 
-    <div class="right-column clearfix">
+    <div class="right-column" ng-if="!ctrl.ViewWell">
         <h3 ng-click="ctrl.RefreshData()">Мониторинг общих ИТ-ресурсов</h3>
 
         <div class="summary">
@@ -145,9 +158,15 @@
                 </div>
                 <div class="summary-cell">
                     По скважинам:
-                    <span class="summary-well-failed" title="Кол-во скважин с отсутствием связи">{{ctrl.Status.Wells.Failed}}</span> /
-                    <span class="summary-well-warn" title="Кол-во скважин с плохой связью">{{ctrl.Status.Wells.Warn}}</span> /
-                    <span class="summary-well-good" title="Кол-во скважин без проблем">{{ctrl.Status.Wells.Good}}</span>
+                    <span class="summary-well-failed" title="Кол-во скважин с отсутствием связи">
+                        {{ctrl.Status.Wells.Failed}}
+                    </span> /
+                    <span class="summary-well-warn" title="Кол-во скважин с плохой связью">
+                        {{ctrl.Status.Wells.Warn}}
+                    </span> /
+                    <span class="summary-well-good" title="Кол-во скважин без проблем">
+                        {{ctrl.Status.Wells.Good}}
+                    </span>
                 </div>
             </div>
         </div>
@@ -161,8 +180,119 @@
             </div>
         </div>
     </div>
+
+    <div class="right-column" ng-if="ctrl.ViewWell">
+        <h3>Информация по скважине {{ctrl.ViewWell.FullName}}</h3>
+
+        <div class="well-info-container" ng-if="ctrl.ViewWell">
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Геонавигационный проект</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Управление бурением</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="close-tab" data-bs-toggle="tab" data-bs-target="#close" type="button" role="tab" aria-controls="profile" aria-selected="false" ng-click="ctrl.ViewWell = null"><i class="fas fa-times"></i></button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="well-info-tab1-buttons">
+                        <div>
+                            <button class="btn btn-outline-primary btn-sm" ng-click="ctrl.ViewWell.Details.NewProject = {}">Создать новый проект</button>
+                            <button class="btn btn-outline-dark btn-sm">Внести цели бурения</button>
+                            <button class="btn btn-outline-dark btn-sm">Внести Траекторию</button>
+                            <button class="btn btn-outline-dark btn-sm">Внести поверхность</button>
+                            <button class="btn btn-outline-dark btn-sm">Внести Траекторию</button>
+                            <button class="btn btn-outline-dark btn-sm">Внести ГИС</button>
+                            <button class="btn btn-outline-dark btn-sm">Выгрузить проект</button>
+
+                        </div>
+                    </div>
+                    <div ng-if="ctrl.ViewWell.Details.NewProject" class="well-info-left">
+                        <div class="well-info-project">
+                            <input type="text" class="form-control" value="Горизонт на пласт а3 500 м" />
+                            <hr />
+                            <span>Подгрузить соседние скважины</span>
+                            <hr />
+                            <i class="fas fa-chevron-down"></i> <span>Выбрать поверхность</span>
+                            <hr />
+                            <i class="fas fa-chevron-down"></i> <span>Выбрать пластопересечение</span>
+                            <hr />
+                            <i class="fas fa-chevron-down"></i> <span>Рекомендации для корреляции</span>
+                        </div>
+                        <div class="well-info-wells">
+                            <div ng-repeat="w in ctrl.ViewWell.Details.Wells" ng-click="w.Checked = !w.Checked">
+                                <i class="fas fa-check-circle" ng-if="w.Checked"></i>
+                                <i class="fas fa-ban" ng-if="!w.Checked"></i>{{w.Name}}
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <img src="images/image-1.png" />
+                    </div>
+                    <div class="well-info-right">
+                        <img src="images/image-2.png" />
+                        <ul>
+                            <li>Дата начала: 12.08.2020</li>
+                            <li>Дата утверждения: 04.09.2021</li>
+                            <li>Подготовил: Усманов И.В.</li>
+                            <li>Согласовал: Ляпин С.К.</li>
+                            <li>Утвердил: Титов А.К.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="well-info-tab1-buttons">
+                        <div>
+                            <button class="btn btn-outline-primary btn-sm">Выгрузить замер ГИС</button>
+                            <button class="btn btn-outline-info btn-sm">Загрузить замер ГИС</button>
+                            <button class="btn btn-outline-primary btn-sm">Выгрузить траекторию</button>
+                            <button class="btn btn-outline-info btn-sm">Загрузить Траекторию</button>
+                        </div>
+                    </div>
+                    <img src="images/image-3.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div style="clear: both;"></div>
-    <div class="map-container">
+    
+    <div class="well-chat" ng-if="ctrl.ViewWell">
+        <h3>Обсуждение</h3>
+
+        <div class="well-chat-container">
+            <div class="well-chat-message">
+                <b>15.09.2021 23:59 Чернов А.П. (оператор):</b>
+                Добрый день, коллеги!
+                прошу подготовить геонавигационный проект к 10.10.2021.
+                проект прошу подготовить в соответствии с протоколом от 23.08.2021 о принятии новой стратегии по оценке запасов на куполе указанного месторождения.
+                Протокол прикрепил к чату
+            </div>
+            <div class="well-chat-message">
+                <b>16.09.2021 01:15 Краснов И.В. (ЦУСС):</b>                
+                Добрый день А.П.
+                Задачу получили, прошу уточнить по каким скважинам предпочитаете выполнить интерполяцию для выбранного купола на основании последних данных исследований при эксплуатации скважин?
+            </div>
+            <div class="well-chat-message">
+                <b>18.09.2021 08:15 Чернов А.П. (оператор):</b>                
+                Интерполяцию прошу выполнить по скважинам 102, 103, 105, 106, 107
+                скважины 101 и 104 прошу не включать, так как ГИС не корректные по нашим оценкам.
+                Протокол по исключению данных скважин прикладываю в чат.
+            </div>
+            <div class="well-chat-message">
+                <b>18.09.2021 12:45 Краснов И.В. (ЦУСС):</b>                
+                А.П., задачу оценили, подготовим проект и оповестим Вас ориентировочно 15.10.2021, к 10.10.2021 утвердим проект и подготовим для бурения.
+            </div>
+        </div>
+        <b>Введите текст:</b>
+        <textarea rows="3" style="width: 100%">
+        </textarea>
+    </div>
+
+    <div class="map-container" ng-if="!ctrl.ViewWell">
         <h3>Карта сбоев</h3>
         <chart-map chart='ctrl.ChartMap'></chart-map>
 
@@ -170,6 +300,8 @@
             <div id="chartmap"></div>
         </div>
     </div>
-    
+
+
+
 </body>
 </html>

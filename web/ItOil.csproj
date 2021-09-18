@@ -131,6 +131,13 @@
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="view\css\default.css" />
+    <Content Include="view\images\favicon-16.png" />
+    <Content Include="view\images\favicon-32.png" />
+    <Content Include="view\images\favicon-64.png" />
+    <Content Include="view\images\favicon.ico" />
+    <Content Include="view\images\image-1.png" />
+    <Content Include="view\images\image-2.png" />
+    <Content Include="view\images\image-3.png" />
     <Content Include="view\index.html" />
     <Content Include="view\js\chart-map.js" />
     <Content Include="view\js\data-service.js" />
